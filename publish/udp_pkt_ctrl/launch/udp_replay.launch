@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<launch>
+        <arg name="hostip" default="127.0.0.1" />
+	<arg name="hostport" default="21000" />
+
+	<node name ="lidar_udp_send" pkg="udp_pkt_ctrl" type="lidar_udp_send">
+            <param name="hostip" type="str" value="$(arg hostip)" />
+	    <param name="hostport" type="int" value="$(arg hostport)" />
+        </node>
+</launch> 

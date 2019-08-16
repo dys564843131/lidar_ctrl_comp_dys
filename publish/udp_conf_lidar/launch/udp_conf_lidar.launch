@@ -1,0 +1,24 @@
+<launch>
+
+	<!-- ================================================ -->
+	<!-- Command Line Args -->
+	<!-- Change Default Values Here -->
+	<arg name="lidarip" default="192.168.1.9" />
+	<arg name="lidarport" default="22137" />
+    <!-- <arg name="hostip" default="192.168.1.10" />  -->
+	<arg name="hostport" default="22001" />
+
+	<node   pkg="udp_conf_lidar" 
+		name="dynamic_lidar_conf" 
+		type="dynamic_lidar_conf"
+		args="">
+        <param name="lidarip" type="str" value="$(arg lidarip)" />
+	    <param name="lidarport" type="int" value="$(arg lidarport)" />
+        <!-- <param name="hostip" type="str" value="$(arg hostip)" />  -->
+	    <param name="hostport" type="int" value="$(arg hostport)" />
+	</node>
+
+	<!-- <node pkg="rqt_reconfigure" name="rqt_reconfigure" type="rqt_reconfigure" args=""> </node> -->
+
+
+</launch>

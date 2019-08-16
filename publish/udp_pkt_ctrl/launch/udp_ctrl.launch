@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<launch>
+    <include file="$(find udp_conf_lidar)/launch/udp_conf_lidar.launch">
+    </include>
+
+    <arg name="srvip" default="192.168.1.10" />
+	<arg name="srvport" default="25140" />
+    <arg name="hostip" default="127.0.0.1" />
+	<arg name="hostport" default="21000" />
+	<node name ="lidar_udp_srv" pkg="udp_pkt_ctrl" type="lidar_udp_srv">
+        <param name="srvip" type="str" value="$(arg srvip)" />
+	    <param name="srvport" type="int" value="$(arg srvport)" />
+        </node>
+
+	<node name ="lidar_udp_send" pkg="udp_pkt_ctrl" type="lidar_udp_send">
+        <param name="hostip" type="str" value="$(arg hostip)" />
+	    <param name="hostport" type="int" value="$(arg hostport)" />
+        </node>
+</launch> 
