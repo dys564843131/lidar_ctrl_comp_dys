@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<launch>
+    
+     
+    <include file="$(find udp_pkt_ctrl_v8)/launch/udp_lidar_only_config.launch">
+	</include>
+    
+
+    <arg name="srvip" default="0.0.0.0" />
+	<arg name="srvport" default="25140" />
+    <arg name="hostip" default="192.168.3.209" />
+	<arg name="hostport" default="25140" />
+
+	<node name ="udp_pkg_serv_node" pkg="aqronos_fft_record" type="udp_pkg_serv_node">
+        <param name="srvip" type="str" value="$(arg srvip)" />
+	    <param name="srvport" type="int" value="$(arg srvport)" />
+        </node>
+
+	<node name ="udp_pkg_send_node" pkg="aqronos_fft_record" type="udp_pkg_send_node">
+        <param name="hostip" type="str" value="$(arg hostip)" />
+	    <param name="hostport" type="int" value="$(arg hostport)" />
+        </node>
+    
+    <node name ="udp_write_file_node" pkg="aqronos_fft_record" type="udp_write_file_node">
+        </node>
+
+
+    <node pkg="rqt_reconfigure" name="rqt_reconfigure" type="rqt_reconfigure">
+		</node>
+
+</launch> 
